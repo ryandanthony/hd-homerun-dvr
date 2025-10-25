@@ -17,7 +17,7 @@ RUN apt-get update && \
 WORKDIR /tmp
 RUN wget -q http://download.silicondust.com/hdhomerun/hdhomerun_record_linux_beta -O hdhomerun_record || \
     wget -q https://download.silicondust.com/hdhomerun/hdhomerun_record_linux -O hdhomerun_record || \
-    touch hdhomerun_record && \
+    (echo "Warning: Could not download HDHomeRun binary. Please provide your own binary." && touch hdhomerun_record) && \
     chmod +x hdhomerun_record
 
 # Stage 2: Create minimal runtime image based on Ubuntu (chiseled approach)
