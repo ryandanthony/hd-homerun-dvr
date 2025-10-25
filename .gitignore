@@ -1,0 +1,17 @@
+# Docker volumes - local directories for recordings and configuration
+recordings/
+config/
+
+# Git
+.git/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

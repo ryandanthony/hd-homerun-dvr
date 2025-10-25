@@ -1,0 +1,15 @@
+services:
+  hdhomerun-dvr:
+    build: .
+    image: hdhomerun-dvr:latest
+    container_name: hdhomerun-dvr
+    network_mode: host
+    volumes:
+      # Mount local directory for recordings
+      - ./recordings:/var/lib/hdhomerun/recordings
+      # Optional: mount configuration directory
+      - ./config:/etc/hdhomerun
+    restart: unless-stopped
+    environment:
+      # Add any environment variables if needed
+      - TZ=America/New_York
