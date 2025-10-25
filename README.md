@@ -6,13 +6,47 @@ Docker image for HDHomeRun DVR based on Ubuntu chiseled image principles.
 
 This Docker image provides a containerized environment for running HDHomeRun DVR on Linux. It's built on Ubuntu 24.04 with a minimal, security-focused approach inspired by chiseled Ubuntu images.
 
+## Using the Pre-built Image
+
+Pre-built images are automatically published to GitHub Container Registry (GHCR) and can be pulled directly:
+
+```bash
+docker pull ghcr.io/ryandanthony/hd-homerun-dvr:latest
+# Or pull a specific version
+docker pull ghcr.io/ryandanthony/hd-homerun-dvr:1.0.0
+```
+
+## Versioning
+
+The project version is managed in the `VERSION` file at the root of the repository. When building images, this version is:
+- Used as a Docker image tag (e.g., `1.0.0`)
+- Embedded as a label in the Docker image
+- Automatically applied during CI/CD builds
+
 ## Building the Docker Image
+
+If you prefer to build the image yourself:
 
 ```bash
 docker build -t hdhomerun-dvr .
+# Or with a specific version
+docker build --build-arg VERSION=$(cat VERSION) -t hdhomerun-dvr .
 ```
 
 ## Running with Docker
+
+Using the pre-built image from GHCR:
+
+```bash
+docker run -d \
+  --name hdhomerun-dvr \
+  --network host \
+  -v /path/to/recordings:/var/lib/hdhomerun/recordings \
+  -v /path/to/config:/etc/hdhomerun \
+  ghcr.io/ryandanthony/hd-homerun-dvr:latest
+```
+
+Or using a locally built image:
 
 ```bash
 docker run -d \

@@ -24,6 +24,9 @@ RUN wget -q http://download.silicondust.com/hdhomerun/hdhomerun_record_linux_bet
 # Using ubuntu:24.04 as base and removing unnecessary components
 FROM ubuntu:24.04
 
+# Version argument for labeling
+ARG VERSION=unknown
+
 # Install only runtime dependencies required by HDHomeRun DVR
 # Keeping the image minimal following chiseled image principles
 RUN apt-get update && \
@@ -50,6 +53,10 @@ RUN chmod +x /usr/local/bin/hdhomerun_record
 RUN mkdir -p /var/lib/hdhomerun/recordings && \
     mkdir -p /etc/hdhomerun && \
     chmod 755 /var/lib/hdhomerun
+
+# Add version label
+LABEL version="${VERSION}"
+LABEL description="HDHomeRun DVR Docker Image"
 
 # HDHomeRun DVR default port
 EXPOSE 59090
