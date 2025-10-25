@@ -12,7 +12,16 @@ Pre-built images are automatically published to GitHub Container Registry (GHCR)
 
 ```bash
 docker pull ghcr.io/ryandanthony/hd-homerun-dvr:latest
+# Or pull a specific version
+docker pull ghcr.io/ryandanthony/hd-homerun-dvr:1.0.0
 ```
+
+## Versioning
+
+The project version is managed in the `VERSION` file at the root of the repository. When building images, this version is:
+- Used as a Docker image tag (e.g., `1.0.0`)
+- Embedded as a label in the Docker image
+- Automatically applied during CI/CD builds
 
 ## Building the Docker Image
 
@@ -20,6 +29,8 @@ If you prefer to build the image yourself:
 
 ```bash
 docker build -t hdhomerun-dvr .
+# Or with a specific version
+docker build --build-arg VERSION=$(cat VERSION) -t hdhomerun-dvr .
 ```
 
 ## Running with Docker
