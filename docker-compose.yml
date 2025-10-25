@@ -1,7 +1,12 @@
 services:
   hdhomerun-dvr:
-    build: .
-    image: hdhomerun-dvr:latest
+    # Option 1: Use pre-built image from GHCR
+    image: ghcr.io/ryandanthony/hd-homerun-dvr:latest
+    
+    # Option 2: Build locally (comment out 'image' above and uncomment below)
+    # build: .
+    # image: hdhomerun-dvr:latest
+    
     container_name: hdhomerun-dvr
     network_mode: host
     volumes:
