@@ -1,6 +1,7 @@
 services:
   hdhomerun-dvr:
     # Option 1: Use pre-built image from GHCR
+    # For production, consider pinning to a specific version tag instead of :latest
     image: ghcr.io/ryandanthony/hd-homerun-dvr:latest
     
     # Option 2: Build locally (comment out 'image' above and uncomment below)
